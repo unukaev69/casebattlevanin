@@ -37,12 +37,10 @@
   </div>
   <div style="font-size:1.3rem;font-weight:bold;color:#10b981"><span id="bal">100</span> ₽</div>
 </div>
-
 <div class="box flex">
   <div class="flex"><div class="coin" onclick="farm()">₽</div><div><b>Фарм (Кликай / Пробел)</b><br><small>Клик: <b id="inc">1</b> ₽</small></div></div>
   <button class="btn" style="background:#3b82f6;color:#fff" id="uClick" onclick="buyClick()">⬆️ Ап клика — <span id="uCost">50</span> ₽</button>
 </div>
-
 <div id="v-c" class="box">
   <div id="lobby" class="grid"></div>
   <div id="openV" style="display:none">
@@ -51,7 +49,6 @@
     <div style="text-align:center"><button class="btn" id="spinBtn" onclick="spin()">ОТКРЫТЬ</button></div>
   </div>
 </div>
-
 <div id="v-u" class="box" style="display:none">
   <div style="text-align:center;margin-bottom:8px">
     <button class="tab" onclick="setM(1.5,66,this)">x1.5 (66%)</button>
@@ -66,7 +63,6 @@
   </div>
   <div style="text-align:center"><button class="btn" id="uBtn" onclick="runU()" disabled>ПРОКАЧАТЬ</button><div id="uMsg" style="margin-top:8px;font-weight:bold"></div></div>
 </div>
-
 <div id="v-m" class="box" style="display:none">
   <div class="arena">
     <div class="slot" id="mS">Выбери предмет в инвентаре</div>
@@ -75,23 +71,19 @@
   </div>
   <div style="text-align:center"><button class="btn" style="background:#c026d3;color:#fff" id="mBtn" onclick="runM()" disabled>ЗАПУСТИТЬ МАГИЮ</button><div id="mMsg" style="margin-top:8px;font-weight:bold"></div></div>
 </div>
-
 <div id="v-k" class="box" style="display:none">
   <div style="text-align:center;margin-bottom:10px">Выбрано: <b id="kCnt">0</b>/10 (мин. 3) | Сумма: <b id="kSum" style="color:#fbbf24">0</b> ₽</div>
   <div style="text-align:center"><button class="btn" id="kBtn" onclick="runK()" disabled>ПОДПИСАТЬ КОНТРАКТ</button> <button class="tab" onclick="kIdx=[];renInv();renK()">Сброс</button><div id="kMsg" style="margin-top:8px;font-weight:bold"></div></div>
 </div>
-
 <div class="box">
   <div class="flex" style="margin-bottom:10px"><h3 style="margin:0">🎒 Инвентарь (<span id="iCnt">0</span>)</h3><button class="btn" style="background:#ef4444;color:#fff;padding:6px 12px" onclick="sellAll()">Продать всё</button></div>
   <div class="grid" id="invG"></div>
 </div>
-
 <div class="modal" id="mod"><div class="mbox">
   <div id="wTag" style="font-weight:bold;color:#fbbf24">ДРОП</div><div id="wE" style="font-size:4rem;margin:10px 0">🔫</div>
   <h3 id="wN" style="margin:4px 0">Имя</h3><div id="wP" style="color:#10b981;font-size:1.3rem;font-weight:bold">0 ₽</div>
   <div class="flex" style="margin-top:15px"><button class="btn" style="flex:1;background:#10b981" onclick="sellW()">Продать</button><button class="btn" style="flex:1" onclick="keepW()">В инвентарь</button></div>
 </div></div>
-
 <script>
 let bal=100,inc=1,uCost=50,curC=0,busy=0,wIt=null,inv=[],uI=null,uTrg=null,uM=2,uCh=50,uWin=0,ang=0,mI=null,kIdx=[];
 const P={
@@ -109,3 +101,40 @@ const C=[
   {n:"GTA III",p:45,i:"🏙️",b:"GTA",c:"w",sp:{n:"★ Складной нож Ночь",e:"🔪",r:"gold"}},{n:"Капсулы",p:49,i:"💊",b:"КАПСУЛА",c:"s",sp:{n:"★ iBUYPOWER Kato 14",e:"🔥",r:"gold"}},
   {n:"Закалённая",p:59,i:"🛡️",c:"w",sp:{n:"★ Керамбит Закалка",e:"🗡️",r:"gold"}},{n:"Музыка",p:79,i:"🎧",b:"МУЗЫКА",c:"m",sp:{n:"★ Hotline Miami",e:"🌴",r:"gold"}},
   {n:"GTA Vice City",p:89,i:"🌴",b:"GTA",c:"w",sp:{n:"★ Бабочка Vice",e:"🦋",r:"gold"}},{n:"007",p:109,i:"🕴️",c:"w",sp:{n:"USP-S | Убийство",e:"🔫",r:"gold"}},
+  {n:"Пины",p:129,i:"🏅",b:"ПИН",c:"p",sp:{n:"★ Пин Вой",e:"🐺",r:"gold"}},{n:"GTA San Andreas",p:149,i:"🚲",b:"GTA",c:"w",sp:{n:"★ M9 Изумруд",e:"💎",r:"gold"}},
+  {n:"Шоколада",p:159,i:"🍫",c:"w",sp:{n:"★ Коготь Тигр",e:"🗡️",r:"gold"}},{n:"Агенты",p:179,i:"🥷",b:"АГЕНТ",c:"a",sp:{n:"★ Майами Дэррил",e:"🎭",r:"gold"}},
+  {n:"Coin",p:199,i:"🪙",c:"w",sp:{n:"★ Керамбит Gold",e:"👑",r:"gold"}},{n:"GTA IV",p:249,i:"🗽",b:"GTA",c:"w",sp:{n:"★ Нож Паутина",e:"🗡️",r:"gold"}},
+  {n:"Комп Семёна",p:299,i:"🖥️",c:"w",sp:{n:"AWP | Поток инф.",e:"🎯",r:"gold"}},{n:"Быстрый нож",p:349,i:"⚡",c:"w",sp:{n:"★ Бабочка Изумруд",e:"🦋",r:"gold"}},
+  {n:"GTA V",p:499,i:"💰",b:"GTA",c:"w",sp:{n:"★ Перчатки Порок",e:"🧤",r:"gold"}},{n:"Левиафан",p:599,i:"🐙",c:"w",sp:{n:"★ Коготь Сапфир",e:"💎",r:"gold"}},
+  {n:"Семья гангстеров",p:777,i:"🕶️",c:"w",sp:{n:"★ Стилет Убийство",e:"🗡️",r:"gold"}},{n:"Чингисхан",p:999,i:"🐎",c:"w",sp:{n:"★ Охотничий нож",e:"👑",r:"gold"}},
+  {n:"GTA 6",p:1490,i:"🦩",b:"GTA",c:"w",sp:{n:"★ Керамбит Рубин",e:"🗡️",r:"gold"}},{n:"Global Elite",p:1990,i:"🌐",c:"w",sp:{n:"★ M9 Рубин",e:"💎",r:"gold"}},
+  {n:"Bitcoin",p:4990,i:"₿",c:"w",sp:{n:"AWP | Драгон Лор",e:"🐉",r:"gold"}}
+];
+function tab(x){if(busy)return;['c','u','m','k'].forEach(t=>{document.getElementById('v-'+t).style.display=t===x?'block':'none';document.getElementById('t-'+t).classList.toggle('act',t===x)});if(x==='c')closeC();if(x==='u')renU();if(x==='m')renM();if(x==='k')renK()}
+function farm(){bal+=inc;upd()}
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&document.getElementById('mod').style.display!=='flex'){e.preventDefault();farm()}});
+function buyClick(){if(bal>=uCost){bal-=uCost;inc++;uCost=Math.round(uCost*1.7);upd()}}
+function drop(c){const r=Math.random()*100,pl=P[c.c];if(r<.1){const a=[...pl.u,c.sp],t=a[Math.floor(Math.random()*a.length)];return{n:t.n,e:t.e,r:'gold',p:Math.round(c.p*18),t:'u'}}if(r<40){const t=pl.p[Math.floor(Math.random()*pl.p.length)];return{n:t.n,e:t.e,r:t.r,p:Math.round(c.p*(1.3+Math.random()*2)),t:'p'}}const t=pl.c[Math.floor(Math.random()*pl.c.length)];return{n:t.n,e:t.e,r:t.r,p:Math.max(1,Math.round(c.p*(.2+Math.random()*.5))),t:'c'}}
+function init(){const g=document.getElementById('lobby');C.forEach((c,i)=>{const d=document.createElement('div');d.className='card';d.onclick=()=>openC(i);d.innerHTML=`${c.b?`<div class="badge">${c.b}</div>`:''}<div style="font-size:2.4rem">${c.i}</div><b>${c.n}</b><div style="color:#10b981;font-weight:bold;margin-top:4px">${c.p} ₽</div>`;g.appendChild(d)});upd()}
+function openC(i){if(busy)return;curC=i;document.getElementById('lobby').style.display='none';document.getElementById('openV').style.display='block';document.getElementById('cName').innerText=C[i].i+' '+C[i].n;const s=document.getElementById('strip');s.style.transition='none';s.style.transform='translateX(0)';s.innerHTML='';for(let k=0;k<10;k++)s.appendChild(mkI(drop(C[i])));upd()}
+function closeC(){if(!busy){document.getElementById('openV').style.display='none';document.getElementById('lobby').style.display='grid'}}
+function mkI(x){const d=document.createElement('div');d.className='item '+(x.r?'r-'+x.r:'');d.innerHTML=`<div style="font-size:1.8rem">${x.e}</div><b>${x.n}</b><b style="color:#10b981">${x.p} ₽</b>`;return d}
+function spin(){const c=C[curC];if(busy||bal<c.p)return;bal-=c.p;upd();busy=1;const s=document.getElementById('strip');s.style.transition='none';s.style.transform='translateX(0)';s.innerHTML='';let w=null;for(let i=0;i<40;i++){const it=drop(c);if(i===34)w=it;s.appendChild(mkI(it))}wIt=w;const tx=(34*143)-(document.querySelector('.roulette').offsetWidth/2)+71;setTimeout(()=>{s.style.transition='transform 3.5s cubic-bezier(.1,.85,.15,1)';s.style.transform=`translateX(-${tx}px)`},30);setTimeout(()=>{busy=0;upd();document.getElementById('wTag').innerText=w.t==='u'?'🔥 УЛЬТРА (0.1%)!':(w.t==='p'?'✅ ОКУП!':'📉 НЕ ОКУПИЛСЯ');document.getElementById('wE').innerText=w.e;document.getElementById('wN').innerText=w.n;document.getElementById('wP').innerText=w.p+' ₽';document.getElementById('mod').style.display='flex'},3650)}
+function sellW(){if(wIt){bal+=wIt.p;wIt=null;upd()}document.getElementById('mod').style.display='none'}
+function keepW(){if(wIt){inv.push(wIt);wIt=null;renInv()}document.getElementById('mod').style.display='none'}
+function byPr(pr){const a=pr>=2500?P.w.u:(pr>=120?P.w.p:P.w.c),t=a[Math.floor(Math.random()*a.length)];return{n:t.n,e:t.e,r:pr>=2500?'gold':(pr>=120?'red':''),p:Math.max(1,Math.round(pr))}}
+function setM(m,ch,b){if(busy)return;uM=m;uCh=ch;document.querySelectorAll('#v-u .tab').forEach(x=>x.classList.remove('act'));b.classList.add('act');document.getElementById('uCh').innerText=ch+'%';document.getElementById('whl').style.background=`conic-gradient(#10b981 0% ${ch}%,#1e293b ${ch}% 100%)`;renU()}
+function renU(){const s=document.getElementById('uS'),t=document.getElementById('uT'),b=document.getElementById('uBtn');if(uI===null||!inv[uI]){uI=null;s.className='slot';s.innerHTML='Выбери предмет';t.className='slot';t.innerHTML='Цель';b.disabled=1;return}const it=inv[uI];uTrg=byPr(it.p*uM);s.className='slot fill';s.innerHTML=`<div style="font-size:2.2rem">${it.e}</div><b>${it.n}</b><b style="color:#10b981">${it.p} ₽</b>`;t.className='slot fill';t.innerHTML=`<div style="font-size:2.2rem">${uTrg.e}</div><b>${uTrg.n}</b><b style="color:#fbbf24">${uTrg.p} ₽</b>`;b.disabled=busy}
+function runU(){if(busy||uI===null)return;busy=1;document.getElementById('uBtn').disabled=1;let rc=uWin>=3?5:(uWin===2?uCh*.45:uCh);const ok=(Math.random()*100)<rc,sec=(uCh/100)*360,st=ok?(8+Math.random()*Math.max(4,sec-16)):(sec+10+Math.random()*Math.max(10,360-sec-20));ang+=1800+(360-(ang%360))+st;const o=document.getElementById('orb');o.style.transition='transform 3s ease-out';o.style.transform=`rotate(${ang}deg)`;setTimeout(()=>{busy=0;const m=document.getElementById('uMsg');if(ok){uWin++;inv[uI]=uTrg;m.innerText='✅ ЗАЛЕТЕЛО!';m.style.color='#10b981'}else{uWin=0;del(uI);m.innerText='❌ СГОРЕЛО!';m.style.color='#ef4444'}renInv();renU()},3100)}
+function renM(){const s=document.getElementById('mS'),b=document.getElementById('mBtn');if(mI===null||!inv[mI]){mI=null;s.className='slot';s.innerHTML='Выбери предмет';b.disabled=1;return}const it=inv[mI];s.className='slot fill';s.innerHTML=`<div style="font-size:2.2rem">${it.e}</div><b>${it.n}</b><b style="color:#10b981">${it.p} ₽</b>`;b.disabled=busy}
+function runM(){if(busy||mI===null)return;busy=1;const bp=inv[mI].p,r=Math.random()*100,np=r<5?bp*12:(r<45?bp*(1.4+Math.random()*2):Math.max(1,bp*(.2+Math.random()*.5))),ns=byPr(np);inv[mI]=ns;busy=0;const rs=document.getElementById('mR');rs.className='slot fill';rs.innerHTML=`<div style="font-size:2.2rem">${ns.e}</div><b>${ns.n}</b><b style="color:#fbbf24">${ns.p} ₽</b>`;document.getElementById('mMsg').innerText=ns.p>=bp?`✅ В ПЛЮС! ${ns.p} ₽`:`📉 В МИНУС... ${ns.p} ₽`;renInv();renM()}
+function renK(){kIdx=kIdx.filter(i=>inv[i]);let s=0;kIdx.forEach(i=>s+=inv[i].p);document.getElementById('kCnt').innerText=kIdx.length;document.getElementById('kSum').innerText=s;document.getElementById('kBtn').disabled=kIdx.length<3}
+function runK(){if(kIdx.length<3)return;let s=0;kIdx.forEach(i=>s+=inv[i].p);[...kIdx].sort((a,b)=>b-a).forEach(i=>del(i));kIdx=[];const res=byPr(s*(.5+Math.random()*2));inv.push(res);document.getElementById('kMsg').innerText=`📜 Получен ${res.n} (${res.p} ₽)`;renInv();renK()}
+function del(i){if(uI===i)uI=null;else if(uI!==null&&i<uI)uI--;if(mI===i)mI=null;else if(mI!==null&&i<mI)mI--;kIdx=kIdx.filter(x=>x!==i).map(x=>x>i?x-1:x);inv.splice(i,1)}
+function sellAll(){if(!busy&&inv.length){bal+=inv.reduce((a,b)=>a+b.p,0);inv=[];uI=null;mI=null;kIdx=[];upd();renInv();renU();renM();renK()}}
+function renInv(){document.getElementById('iCnt').innerText=inv.length;const g=document.getElementById('invG');g.innerHTML='';inv.forEach((it,i)=>{const d=document.createElement('div');d.className='card';d.innerHTML=`<div style="font-size:1.8rem">${it.e}</div><small><b>${it.n}</b></small><div style="color:#10b981;font-weight:bold">${it.p} ₽</div><button class="m-btn" style="background:#10b981;color:#000" onclick="bal+=${it.p};del(${i});upd();renInv()">Продать</button><button class="m-btn" style="background:#8b5cf6" onclick="uI=${i};tab('u')">⚡ Ап</button><button class="m-btn" style="background:#c026d3" onclick="mI=${i};tab('m')">🔮 Магия</button><button class="m-btn" style="background:#2563eb" onclick="kIdx.includes(${i})?kIdx.splice(kIdx.indexOf(${i}),1):kIdx.length<10&&kIdx.push(${i});renInv();renK()">${kIdx.includes(i)?'✅ В контр.':'📜 В контр.'}</button>`;g.appendChild(d)})}
+function upd(){document.getElementById('bal').innerText=bal;document.getElementById('inc').innerText=inc;document.getElementById('uCost').innerText=uCost;document.getElementById('uClick').disabled=bal<uCost;const b=document.getElementById('spinBtn'),c=C[curC];if(b&&c){b.innerText=`ОТКРЫТЬ ЗА ${c.p} ₽`;b.disabled=busy||bal<c.p}}
+init();
+</script>
+</body>
+</html>
