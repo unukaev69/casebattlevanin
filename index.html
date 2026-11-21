@@ -1,321 +1,111 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS:GO Case Battle — Все Кейсы, Апгрейды и Контракты</title>
-    <style>
-        * { box-sizing: border-box; user-select: none; }
-        body {
-            margin: 0;
-            padding: 15px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0b0e14;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        .header {
-            width: 100%;
-            max-width: 1120px;
-            background: #151b26;
-            border: 1px solid #263042;
-            border-radius: 16px;
-            padding: 14px 22px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .logo {
-            font-size: 1.35rem;
-            font-weight: 900;
-            letter-spacing: 1px;
-            color: #f59e0b;
-            cursor: pointer;
-        }
-        .logo span { color: #ffffff; }
-        .nav-tabs {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-        .nav-btn {
-            background: #1e2636;
-            color: #94a3b8;
-            border: 1px solid #334155;
-            padding: 8px 13px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 0.88rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .nav-btn:hover { color: #ffffff; border-color: #f59e0b; }
-        .nav-btn.active {
-            background: #f59e0b;
-            color: #0b0e14;
-            border-color: #f59e0b;
-        }
-        .balance {
-            font-size: 1.35rem;
-            font-weight: bold;
-            color: #10b981;
-            background: rgba(16, 185, 129, 0.12);
-            padding: 8px 16px;
-            border-radius: 10px;
-            border: 1px solid rgba(16, 185, 129, 0.35);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CS:GO Case Battle</title>
+<style>
+*{box-sizing:border-box;user-select:none}body{margin:0;padding:10px;font-family:sans-serif;background:#0b0e14;color:#fff;display:flex;flex-direction:column;align-items:center}
+.box{width:100%;max-width:1050px;background:#151b26;border:1px solid #263042;border-radius:14px;padding:14px;margin-bottom:14px}
+.flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.btn{background:#f59e0b;color:#000;border:none;padding:10px 18px;font-weight:bold;border-radius:8px;cursor:pointer}.btn:disabled{background:#334155;color:#64748b}
+.tab{background:#1e2636;color:#94a3b8;border:1px solid #334155;padding:8px 12px;border-radius:8px;font-weight:bold;cursor:pointer}.tab.act{background:#f59e0b;color:#000}
+.coin{width:60px;height:60px;border-radius:50%;background:radial-gradient(#fde047,#f59e0b);border:3px solid #fef08a;display:flex;justify-content:center;align-items:center;font-size:1.6rem;font-weight:900;color:#78350f;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.card{background:#1e2636;border:2px solid #263042;border-radius:12px;padding:12px;text-align:center;cursor:pointer;position:relative}.card:hover{border-color:#f59e0b}
+.badge{position:absolute;top:5px;right:5px;font-size:.6rem;padding:2px 5px;border-radius:4px;background:#ec4899;font-weight:bold}
+.roulette{position:relative;width:100%;height:135px;background:#0b0e14;border-radius:10px;overflow:hidden;margin:12px 0;border:2px solid #334155}
+.ptr{position:absolute;top:0;left:50%;width:4px;height:100%;background:#f59e0b;z-index:10}.strip{display:flex;height:100%;align-items:center}
+.item{min-width:135px;height:115px;margin:0 4px;background:#1e2636;border-radius:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:5px;border-bottom:4px solid #3b82f6;flex-shrink:0;text-align:center;font-size:.75rem}
+.r-purple{border-color:#a855f7}.r-pink{border-color:#ec4899}.r-red{border-color:#ef4444}.r-gold{border-color:#eab308;background:#2a2210}
+.arena{display:grid;grid-template-columns:1fr 180px 1fr;gap:12px;align-items:center;margin:12px 0}@media(max-width:700px){.arena{grid-template-columns:1fr}}
+.slot{background:#0b0e14;border:2px dashed #334155;border-radius:12px;height:160px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10px;text-align:center}.slot.fill{border-style:solid;border-color:#f59e0b;background:#1e2636}
+.wheel{width:170px;height:170px;border-radius:50%;margin:0 auto;position:relative;border:5px solid #263042;display:flex;justify-content:center;align-items:center}
+.orbit{position:absolute;inset:-8px;pointer-events:none}.needle{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:15px solid #f59e0b;margin:0 auto}
+.m-btn{border:none;padding:4px;border-radius:5px;font-weight:bold;cursor:pointer;font-size:.7rem;color:#fff;margin-top:4px;width:100%}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:99}
+.mbox{background:#151b26;border:2px solid #f59e0b;border-radius:16px;padding:24px;text-align:center;max-width:340px;width:90%}
+</style>
+</head>
+<body>
+<div class="box flex">
+  <div class="flex"><b style="font-size:1.3rem;color:#f59e0b">CS:GO BATTLE</b>
+    <button class="tab act" id="t-c" onclick="tab('c')">📦 Кейсы</button>
+    <button class="tab" id="t-u" onclick="tab('u')">⚡ Апгрейд</button>
+    <button class="tab" id="t-m" onclick="tab('m')">🔮 Магия</button>
+    <button class="tab" id="t-k" onclick="tab('k')">📜 Контракты</button>
+  </div>
+  <div style="font-size:1.3rem;font-weight:bold;color:#10b981"><span id="bal">100</span> ₽</div>
+</div>
 
-        /* Зона фарма (Кликер) */
-        .farm-section {
-            width: 100%;
-            max-width: 1120px;
-            background: linear-gradient(135deg, #151b26 0%, #1c2433 100%);
-            border: 2px solid #263042;
-            border-radius: 16px;
-            padding: 14px 22px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .farm-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        .coin-btn {
-            width: 68px;
-            height: 68px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #fde047, #f59e0b 65%, #b45309 100%);
-            border: 4px solid #fef08a;
-            box-shadow: 0 0 22px rgba(245, 158, 11, 0.45), inset 0 0 10px rgba(0,0,0,0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.9rem;
-            font-weight: 900;
-            color: #78350f;
-            cursor: pointer;
-            transition: transform 0.06s;
-        }
-        .coin-btn:hover { transform: scale(1.05); }
-        .coin-btn:active { transform: scale(0.9); }
-        .farm-info h3 { margin: 0 0 4px 0; color: #fbbf24; font-size: 1.02rem; }
-        .farm-info p { margin: 0; color: #94a3b8; font-size: 0.85rem; }
-        
-        .upgrade-btn {
-            background: #3b82f6;
-            color: #ffffff;
-            border: none;
-            padding: 11px 16px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-        }
-        .upgrade-btn:hover { background: #2563eb; }
-        .upgrade-btn:active { transform: scale(0.96); }
-        .upgrade-btn:disabled {
-            background: #334155;
-            color: #64748b;
-            cursor: not-allowed;
-        }
+<div class="box flex">
+  <div class="flex"><div class="coin" onclick="farm()">₽</div><div><b>Фарм (Кликай / Пробел)</b><br><small>Клик: <b id="inc">1</b> ₽</small></div></div>
+  <button class="btn" style="background:#3b82f6;color:#fff" id="uClick" onclick="buyClick()">⬆️ Ап клика — <span id="uCost">50</span> ₽</button>
+</div>
 
-        .floating-plus {
-            position: fixed;
-            font-weight: 900;
-            font-size: 1.3rem;
-            color: #fde047;
-            pointer-events: none;
-            animation: floatUp 0.7s ease-out forwards;
-            z-index: 999;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
-        }
-        @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-55px) scale(1.25); }
-        }
+<div id="v-c" class="box">
+  <div id="lobby" class="grid"></div>
+  <div id="openV" style="display:none">
+    <div class="flex"><button class="tab" onclick="closeC()">← Назад</button><h3 id="cName" style="margin:0;color:#fbbf24">Кейс</h3><small>60% | 39.9% | 0.1%</small></div>
+    <div class="roulette"><div class="ptr"></div><div class="strip" id="strip"></div></div>
+    <div style="text-align:center"><button class="btn" id="spinBtn" onclick="spin()">ОТКРЫТЬ</button></div>
+  </div>
+</div>
 
-        .btn {
-            background: #f59e0b;
-            color: #0b0e14;
-            border: none;
-            padding: 13px 26px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: transform 0.1s, background 0.2s;
-        }
-        .btn:hover { background: #d97706; }
-        .btn:active { transform: scale(0.96); }
-        .btn:disabled {
-            background: #334155;
-            color: #64748b;
-            cursor: not-allowed;
-        }
+<div id="v-u" class="box" style="display:none">
+  <div style="text-align:center;margin-bottom:8px">
+    <button class="tab" onclick="setM(1.5,66,this)">x1.5 (66%)</button>
+    <button class="tab act" onclick="setM(2,50,this)">x2 (50%)</button>
+    <button class="tab" onclick="setM(5,20,this)">x5 (20%)</button>
+    <button class="tab" onclick="setM(10,10,this)">x10 (10%)</button>
+  </div>
+  <div class="arena">
+    <div class="slot" id="uS">Выбери предмет в инвентаре</div>
+    <div class="wheel" id="whl"><b style="font-size:1.5rem;color:#10b981;z-index:2;background:#151b26;padding:15px;border-radius:50%" id="uCh">50%</b><div class="orbit" id="orb"><div class="needle"></div></div></div>
+    <div class="slot" id="uT">Цель</div>
+  </div>
+  <div style="text-align:center"><button class="btn" id="uBtn" onclick="runU()" disabled>ПРОКАЧАТЬ</button><div id="uMsg" style="margin-top:8px;font-weight:bold"></div></div>
+</div>
 
-        .view-box {
-            display: none;
-            width: 100%;
-            max-width: 1120px;
-            background: #151b26;
-            border: 2px solid #263042;
-            border-radius: 18px;
-            padding: 22px;
-            margin-bottom: 24px;
-            animation: fadeIn 0.2s ease;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+<div id="v-m" class="box" style="display:none">
+  <div class="arena">
+    <div class="slot" id="mS">Выбери предмет в инвентаре</div>
+    <div style="font-size:4rem;text-align:center" id="cald">🔮</div>
+    <div class="slot" id="mR">❓ Случайный предмет (плюс или минус)</div>
+  </div>
+  <div style="text-align:center"><button class="btn" style="background:#c026d3;color:#fff" id="mBtn" onclick="runM()" disabled>ЗАПУСТИТЬ МАГИЮ</button><div id="mMsg" style="margin-top:8px;font-weight:bold"></div></div>
+</div>
 
-        /* Главная вкладка кейсов */
-        #lobbyView {
-            width: 100%;
-            max-width: 1120px;
-        }
-        .section-title {
-            font-size: 1.15rem;
-            font-weight: bold;
-            color: #e2e8f0;
-            margin: 0 0 12px 0;
-        }
-        .cases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-            gap: 14px;
-            width: 100%;
-            margin-bottom: 24px;
-        }
-        .case-card {
-            background: #151b26;
-            border: 2px solid #263042;
-            border-radius: 16px;
-            padding: 18px 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-        }
-        .case-card:hover {
-            transform: translateY(-5px);
-            border-color: #f59e0b;
-            background: #1c2433;
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);
-        }
-        .case-card.gta-style {
-            border-color: #3b2d54;
-            background: linear-gradient(180deg, #1b1528 0%, #151b26 100%);
-        }
-        .case-card.gta-style:hover {
-            border-color: #ec4899;
-            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.25);
-        }
-        .case-card.special-style {
-            border-color: #1e3a5f;
-            background: linear-gradient(180deg, #13233a 0%, #151b26 100%);
-        }
-        .case-card.special-style:hover {
-            border-color: #38bdf8;
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
-        }
-        .badge-tag {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            color: #fff;
-            font-size: 0.62rem;
-            font-weight: 900;
-            padding: 2px 6px;
-            border-radius: 6px;
-            text-transform: uppercase;
-        }
-        .badge-gta { background: #ec4899; }
-        .badge-spec { background: #0284c7; }
+<div id="v-k" class="box" style="display:none">
+  <div style="text-align:center;margin-bottom:10px">Выбрано: <b id="kCnt">0</b>/10 (мин. 3) | Сумма: <b id="kSum" style="color:#fbbf24">0</b> ₽</div>
+  <div style="text-align:center"><button class="btn" id="kBtn" onclick="runK()" disabled>ПОДПИСАТЬ КОНТРАКТ</button> <button class="tab" onclick="kIdx=[];renInv();renK()">Сброс</button><div id="kMsg" style="margin-top:8px;font-weight:bold"></div></div>
+</div>
 
-        .case-icon { font-size: 3rem; margin-bottom: 10px; }
-        .case-name { font-weight: bold; font-size: 1rem; margin-bottom: 8px; }
-        .case-price {
-            background: rgba(16, 185, 129, 0.15);
-            color: #10b981;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-        }
+<div class="box">
+  <div class="flex" style="margin-bottom:10px"><h3 style="margin:0">🎒 Инвентарь (<span id="iCnt">0</span>)</h3><button class="btn" style="background:#ef4444;color:#fff;padding:6px 12px" onclick="sellAll()">Продать всё</button></div>
+  <div class="grid" id="invG"></div>
+</div>
 
-        /* Окно открытия кейса */
-        .case-view-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 18px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid #263042;
-        }
-        .back-btn {
-            background: #334155;
-            color: #ffffff;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.92rem;
-        }
-        .back-btn:hover { background: #475569; }
-        .back-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        
-        .case-view-title {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: #fbbf24;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .chances-badge {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            background: #0b0e14;
-            padding: 6px 12px;
-            border-radius: 8px;
-            border: 1px solid #263042;
-        }
-        .roulette-window {
-            position: relative;
-            width: 100%;
-            height: 155px;
-            background: #0b0e14;
-            border-radius: 14px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border: 2px solid #334155;
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
-        }
-        .pointer {
-            position: absolute;
+<div class="modal" id="mod"><div class="mbox">
+  <div id="wTag" style="font-weight:bold;color:#fbbf24">ДРОП</div><div id="wE" style="font-size:4rem;margin:10px 0">🔫</div>
+  <h3 id="wN" style="margin:4px 0">Имя</h3><div id="wP" style="color:#10b981;font-size:1.3rem;font-weight:bold">0 ₽</div>
+  <div class="flex" style="margin-top:15px"><button class="btn" style="flex:1;background:#10b981" onclick="sellW()">Продать</button><button class="btn" style="flex:1" onclick="keepW()">В инвентарь</button></div>
+</div></div>
+
+<script>
+let bal=100,inc=1,uCost=50,curC=0,busy=0,wIt=null,inv=[],uI=null,uTrg=null,uM=2,uCh=50,uWin=0,ang=0,mI=null,kIdx=[];
+const P={
+  w:{c:[{n:"P250 | Песчаная буря",e:"🔫",r:""},{n:"Glock-18 | Яблоко",e:"🔫",r:""},{n:"AWP | Африканская сетка",e:"🎯",r:"purple"},{n:"AK-47 | Африканская сетка",e:"🔥",r:"purple"}],p:[{n:"AK-47 | Азимов",e:"🔥",r:"pink"},{n:"AK-47 | Вулкан",e:"⚡",r:"red"},{n:"AWP | Азимов",e:"🎯",r:"red"},{n:"M4A1-S | Поток инф.",e:"💎",r:"red"}],u:[{n:"★ Керамбит | Градиент",e:"🗡️",r:"gold"},{n:"★ Бабочка | Рубин",e:"🦋",r:"gold"},{n:"AWP | История о драконе",e:"🐉",r:"gold"}]},
+  s:{c:[{n:"Наклейка | Стрелок",e:"🏷️",r:""},{n:"Наклейка | NAVI",e:"⭐",r:"purple"}],p:[{n:"Наклейка | Корона",e:"👑",r:"red"},{n:"Наклейка | s1mple Gold",e:"🏆",r:"red"}],u:[{n:"★ Titan (Holo) Kato 14",e:"💎",r:"gold"}]},
+  b:{c:[{n:"Брелок | Маленький SAS",e:"🧸",r:""},{n:"Брелок | Мини-граната",e:"💣",r:"purple"}],p:[{n:"Брелок | Полудрагоценный",e:"🔮",r:"pink"}],u:[{n:"★ Брелок | Золотой Дракон",e:"🐉",r:"gold"}]},
+  m:{c:[{n:"Музыка | Crimson Assault",e:"🎵",r:""}],p:[{n:"Музыка | AWOLNATION",e:"🎸",r:"pink"}],u:[{n:"★ Музыка | Hotline Miami",e:"🌴",r:"gold"}]},
+  a:{c:[{n:"Агент | Боец Феникс",e:"🥷",r:""}],p:[{n:"Агент | Доктор Романов",e:"🕶️",r:"pink"}],u:[{n:"★ Сэр Майами Дэррил",e:"🎭",r:"gold"}]},
+  p:{c:[{n:"Пин | Победа",e:"🏅",r:""}],p:[{n:"Пин | Dust II",e:"☀️",r:"red"}],u:[{n:"★ Пин | Вой Genuine",e:"🐺",r:"gold"}]}
+};
+const C=[
+  {n:"Сильвер",p:9,i:"🥈",c:"w",sp:{n:"★ Тычковые ножи",e:"🗡️",r:"gold"}},{n:"Элита",p:13,i:"🎩",c:"w",sp:{n:"★ Скелетный нож",e:"🗡️",r:"gold"}},
+  {n:"Наклейки",p:19,i:"🏷️",b:"СТИКЕР",c:"s",sp:{n:"★ Titan Holo 14",e:"💎",r:"gold"}},{n:"Армейское",p:25,i:"🪖",c:"w",sp:{n:"★ Штык-нож",e:"🔪",r:"gold"}},
+  {n:"Калаши",p:35,i:"🔥",c:"w",sp:{n:"AK-47 | Дикий лотос",e:"👑",r:"gold"}},{n:"Брелки",p:39,i:"🧸",b:"БРЕЛОК",c:"b",sp:{n:"★ Золотой Дракон",e:"🐉",r:"gold"}},
+  {n:"GTA III",p:45,i:"🏙️",b:"GTA",c:"w",sp:{n:"★ Складной нож Ночь",e:"🔪",r:"gold"}},{n:"Капсулы",p:49,i:"💊",b:"КАПСУЛА",c:"s",sp:{n:"★ iBUYPOWER Kato 14",e:"🔥",r:"gold"}},
+  {n:"Закалённая",p:59,i:"🛡️",c:"w",sp:{n:"★ Керамбит Закалка",e:"🗡️",r:"gold"}},{n:"Музыка",p:79,i:"🎧",b:"МУЗЫКА",c:"m",sp:{n:"★ Hotline Miami",e:"🌴",r:"gold"}},
+  {n:"GTA Vice City",p:89,i:"🌴",b:"GTA",c:"w",sp:{n:"★ Бабочка Vice",e:"🦋",r:"gold"}},{n:"007",p:109,i:"🕴️",c:"w",sp:{n:"USP-S | Убийство",e:"🔫",r:"gold"}},
