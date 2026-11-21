@@ -222,10 +222,8 @@ function playSnd(type){
     else if(type==='magic'){o.type='sine';o.frequency.setValueAtTime(320,t);o.frequency.exponentialRampToValueAtTime(780,t+.14);g.gain.setValueAtTime(.06,t);g.gain.exponentialRampToValueAtTime(.001,t+.15);o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+.15)}
     else if(type==='contract'){o.type='sawtooth';o.frequency.setValueAtTime(220,t);o.frequency.setValueAtTime(440,t+.08);o.frequency.setValueAtTime(660,t+.16);g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+.35);o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+.35)}
     else if(type==='lose'){o.type='sawtooth';o.frequency.setValueAtTime(280,t);o.frequency.linearRampToValueAtTime(140,t+.35);g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+.36);o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+.36)}
-    else if(type==='win'){.forEach((f,idx)=>{const osc=actx.createOscillator(),gn=actx.createGain();osc.type='triangle';osc.frequency.setValueAtTime(f,t+idx*.09);gn.gain.setValueAtTime(.15,t+idx*.09);gn.gain.exponentialRampToValueAtTime(.001,t+idx*.09+.35);osc.connect(gn);gn.connect(actx.destination);osc.start(t+idx*.09);osc.stop(t+idx*.09+.35)})}
+    else if(type==='win'){new Array(523,659,784,1046).forEach((f,idx)=>{const osc=actx.createOscillator(),gn=actx.createGain();osc.type='triangle';osc.frequency.setValueAtTime(f,t+idx*.09);gn.gain.setValueAtTime(.15,t+idx*.09);gn.gain.exponentialRampToValueAtTime(.001,t+idx*.09+.35);osc.connect(gn);gn.connect(actx.destination);osc.start(t+idx*.09);osc.stop(t+idx*.09+.35)})} 
   }catch(e){}
-}
-
 let particles=[];
 function launchFireworks(){
   playSnd('win');
